@@ -1,6 +1,7 @@
 # KONGA Backend
 
 [![wercker status](https://app.wercker.com/status/ba18dfbce20c686dc42e56ec32e400d9/s/master "wercker status")](https://app.wercker.com/project/byKey/ba18dfbce20c686dc42e56ec32e400d9)
+![Go](https://github.com/hyp3rd/konga-backend/workflows/Go/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/gitlab.com/hyperd/konga-backend)](https://goreportcard.com/report/gitlab.com/hyperd/konga-backend)
 [![GoDoc](https://godoc.org/gitlab.com/hyperd/konga-backend?status.svg)](https://pkg.go.dev/gitlab.com/hyperd/konga-backend?tab=doc)
 

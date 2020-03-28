@@ -129,8 +129,14 @@ func main() {
 		var http2Server = http2.Server{}
 		_ = http2.ConfigureServer(&httpServer, &http2Server)
 		logger.Log("transport", "HTTPS", "addr", *httpsAddr)
-		errs <- httpServer.ListenAndServeTLS("/etc/tls/certs/tls.crt", "/etc/tls/certs/tls.key")
-		// errs <- http.ListenAndServeTLS(*httpsAddr, "./tls/tls.crt", "./tls/tls.key", h)
+
+		if _, err := os.Stat("/etc/tls/certs/tls.crt"); err == nil {
+			errs <- httpServer.ListenAndServeTLS("/etc/tls/certs/tls.crt", "/etc/tls/certs/tls.key")
+
+		} else if os.IsNotExist(err) {
+			errs <- http.ListenAndServeTLS(*httpsAddr, "./secrets//tls/konga-backend.hyperd.sh.crt", "./secrets/tls/konga-backend.hyperd.sh.key", h)
+
+		}
 
 	}()
 

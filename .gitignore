@@ -173,3 +173,7 @@ fabric.properties
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+### konga-backend ignores
+secrets/*
+deployment/*

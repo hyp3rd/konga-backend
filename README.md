@@ -16,3 +16,35 @@ There are two ways here available to build the code; a targetted method and a [c
 # change according to your system/architecture
 CGO_ENABLED=0 GOARCH=[amd64|386] GOOS=[linux|darwin] go build -ldflags="-w -s" -a -installsuffix 'static' -o konga cmd/konga/main.go
 ```
+
+### Multiplatform build with Docker
+
+To trigger a multiplatform build, from the root diretory of this repository, run:
+
+```bash
+rm -rf $(pwd)/releases/*
+
+docker run --rm -it -v "$PWD":/usr/src/app -w /usr/src/app golang:latest bash -c '
+for GOOS in darwin linux; do
+    for GOARCH in 386 amd64; do
+      export GOOS GOARCH
+      CGO_ENABLED=0 GO111MODULE=on go build -ldflags="-w -s -X main.minversion=`date -u +.%Y%m%d.%H%M%S`" \
+      -a -installsuffix "static" -o releases/konga-$GOOS-$GOARCH cmd/konga/main.go
+    done
+done
+'
+```
+
+#### Local testing with the inmemory strategy
+
+For local testing run the code as follow:
+
+```bash
+./init-modules.bash && go run cmd/konga/main.go --database.type="inmemory"
+```
+
+Or execute the compiled binary:
+
+```bash
+./releases/konga-darwin-amd64 --database.type="inmemory"
+```

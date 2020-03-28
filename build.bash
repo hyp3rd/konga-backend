@@ -44,7 +44,7 @@ build () {
 
 push_to_scm() {
   git status
-  git add . ; git commit -m "builds update" || : ; git push || :
+  git add . ; git commit -m "Automated build" || : ; git push || :
 }
 
 update_docker_images () {
@@ -63,5 +63,4 @@ update_docker_images () {
   report
 }
 
-build
-# build && push_to_scm && update_docker_images
+build && push_to_scm && update_docker_images

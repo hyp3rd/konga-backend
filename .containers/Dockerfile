@@ -2,7 +2,7 @@
 # Dockerfile for eu.gcr.io/hyperd-containers/konga-backend
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-FROM alpine:3.10
+FROM alpine:3.11.5
 
 ENV TERM="xterm" \
     LANG="C.UTF-8" \

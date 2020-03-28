@@ -49,6 +49,6 @@ ini_modules () {
 	report
 }
 
-# deps | unique_repos | go_get_update
+deps | unique_repos | go_get_update
 
 ini_modules

@@ -7,7 +7,7 @@ import (
 
 // service implements the konga Service
 type service struct {
-	repository titanic.Repository
+	repository konga.Repository
 	logger     log.Logger
 }
 

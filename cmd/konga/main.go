@@ -56,7 +56,7 @@ func main() {
 		if !isInMemory {
 			var err error
 
-			const addr = "postgresql://d4gh0s7@roach1:26257/konga?sslmode=disable"
+			const addr = "postgresql://hyperd@roach1:26257/konga?sslmode=disable"
 
 			db, err = gorm.Open("postgres", addr)
 

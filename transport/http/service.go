@@ -14,7 +14,7 @@ import (
 
 	"github.com/go-kit/kit/log"
 	kithttp "github.com/go-kit/kit/transport/http"
-	"gitlab.com/hyperd/konga-backend"
+	konga "gitlab.com/hyperd/konga-backend"
 	"gitlab.com/hyperd/konga-backend/transport"
 )
 

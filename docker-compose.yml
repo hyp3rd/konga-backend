@@ -1,0 +1,58 @@
+version: "3.7"
+
+services:
+  roach1:
+    image: cockroachdb/cockroach:v19.2.5
+    command: start --insecure
+    expose:
+      - "8080"
+      - "26257"
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    networks:
+      - konga_network
+    volumes:
+      - ./cockroach-data/roach1:/cockroach/cockroach-data
+  roach2:
+    image: cockroachdb/cockroach:v19.2.5
+    command: start --insecure --join=roach1
+    networks:
+      - konga_network
+    volumes:
+      - ./cockroach-data/roach2:/cockroach/cockroach-data
+  roach3:
+    image: cockroachdb/cockroach:v19.2.5
+    command: start --insecure --join=roach1
+    networks:
+      - konga_network
+    volumes:
+      - ./cockroach-data/roach3:/cockroach/cockroach-data
+  db-init:
+    image: cockroachdb/cockroach
+    networks:
+      - konga_network
+    volumes:
+      - ./.containers/seed-db.bash:/seed-db.bash
+    entrypoint: "/bin/bash"
+    command: ./seed-db.bash
+  konga-backend:
+    image: gcr.io/${PROJECT_ID}/konga-backend:latest
+    networks:
+      - konga_network
+    expose:
+      - "3000"
+      - "8443"
+    ports:
+      - "8443:8443"
+      - "3000:3000"
+    volumes:
+      - ./secrets/tls:/etc/tls/certs
+    depends_on:
+      - roach1
+      - roach2
+      - roach3
+      - db-init
+    restart: unless-stopped
+networks:
+  konga_network:

@@ -6,7 +6,7 @@ import (
 	"gitlab.com/hyperd/konga-backend"
 )
 
-// Middleware describes the titanic service (as opposed to endpoint) middleware.
+// Middleware describes the konga service (as opposed to endpoint) middleware.
 type Middleware func(konga.Service) konga.Service
 
 // LoggingMiddleware provides basic logging Middleware

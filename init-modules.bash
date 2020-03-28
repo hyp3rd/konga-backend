@@ -38,7 +38,7 @@ go_get_update () {
 }
 
 ini_modules () {
-    modules=('.' 'transport' 'transport/http' 'inmemory' 'implementation' 'cmd/konga')
+    modules=('.' 'transport' 'transport/http' 'inmemory' 'cockroachdb' 'implementation' 'cmd/konga')
 
     for i in "${modules[@]}"; do
         cd $i ; rm -rf go.* ; go mod init ;  cd -  # ; go mod tidy ; GO111MODULE=on go build ; cd -

@@ -4,7 +4,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// Konga
+// Konga struct
 type Konga struct {
 	// gorm.Model
 	ID uuid.UUID `json:"uuid,omitempty" gorm:"primary_key"`

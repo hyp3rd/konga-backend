@@ -3,6 +3,7 @@ module gitlab.com/hyperd/konga-backend
 go 1.14
 
 require (
+	github.com/Kong/go-pdk v0.3.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496 // indirect
 	github.com/go-kit/kit v0.10.0 // indirect
 	github.com/google/uuid v1.1.1

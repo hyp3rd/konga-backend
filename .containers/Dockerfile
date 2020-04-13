@@ -11,12 +11,12 @@ ENV TERM="xterm" \
     LOG_STDERR=""
 
 RUN set -x \
-    && apk update \
-    && rm -rf /var/cache/apk/* \
-    export RANDOM_PASSWORD=`tr -dc A-Za-z0-9 < /dev/urandom | head -c71` \
-    && echo "root:$RANDOM_PASSWORD" | chpasswd \
-    && unset RANDOM_PASSWORD \
-    && passwd -l root
+  && apk update \
+  && rm -rf /var/cache/apk/* \
+  export RANDOM_PASSWORD=`tr -dc A-Za-z0-9 < /dev/urandom | head -c71` \
+  && echo "root:$RANDOM_PASSWORD" | chpasswd \
+  && unset RANDOM_PASSWORD \
+  && passwd -l root
 
 RUN set -ex; \
 	apkArch="$(apk --print-arch)"; \

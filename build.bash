@@ -29,7 +29,7 @@ validate_env () {
 # build it's a simple golang cross-compiler that generates alpine linux compatible binaries
 build () {
 
-  rm -rf $(pwd)/releases/*
+  rm -rf "$(pwd)"/releases/*
 
   docker run --rm -it -v "$PWD":/usr/src/app -w /usr/src/app golang:latest bash -c '
   for GOOS in darwin linux; do
@@ -50,15 +50,15 @@ push_to_scm() {
 update_docker_images () {
   validate_env
 
-  cd $(pwd)/releases
+  cd "$(pwd)"/releases
 
   # build the konga-backend image with our modifications (see Dockerfile) and tag for private GCR
   docker build --no-cache --file ../.containers/Dockerfile -t gcr.io/$PROJECT_ID/konga-backend:latest .
 
   # configure pushing to private GCR, and push our image
   gcloud auth configure-docker -q
-  docker push gcr.io/$PROJECT_ID/konga-backend:latest
-  docker push gcr.io/$PROJECT_ID/konga-backend:mock
+  docker push gcr.io/"$PROJECT_ID"/konga-backend:latest
+  docker push gcr.io/"$PROJECT_ID"/konga-backend:mock
 
   report
 }
